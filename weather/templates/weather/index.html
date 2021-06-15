@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="stylesheet" href="{% static 'weather/index.css' %}"/>
+    <title>Document</title>
+    
+  </head>
+<style>
+.active{
+  background-color=red;
+}
+</style>
+  <body>
+  <div class="container">
+    <h1 class="title">weather</h1>
+    <hr>
+    <br>
+    <div class="data">
+      <form action="" method="post">
+        {% csrf_token %}
+        <input class="search" type="search" name="city" placeholder="enter country" />
+        <button class="btn" type="submit">search</button>
+      </form> <br> <br>
+
+      {% if country_code and temp and pressure and humidity %}
+      <h3>{{city|title}}</h3> <br>
+      <h3>Temperature : {{temp}}</h3> <br>
+      <h3>Pressure : {{pressure}}</h3> <br>
+      <h3>Humidity : {{humiduty}}</h3> <br>
+      <h3>Maximum temperature : {{max_temp}}</h3> <br>
+      <h3>Minimum temperature : {{min_temp}}</h3> <br>
+      <h3>Feel like : {{feel}}</h3> <br>
+      <h3 >haze</h3> <br>
+      <img
+        src="https://openweathermap.org/img/w/{{icon}}.png"
+        alt="image"
+        style="width: 70px"
+      />
+
+      {% else %}
+<h3 class="wait">Waiting for you city name.....</h3>
+
+      {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
